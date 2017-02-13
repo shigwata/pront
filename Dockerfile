@@ -7,7 +7,7 @@ RUN apt-get update -y && apt-get install -y \
     cmake \
     php5
 
-RUN gem install pronto && \
+RUN gem install pronto -v "< 0.8.0" && \
     gem install pronto-phpcs && \
     gem install pronto-phpmd
 
