@@ -3,13 +3,15 @@ FROM ruby:2
 ENV PRONTO_ROOT /data
 WORKDIR $PRONTO_ROOT
 
-RUN apt-get update -y && apt-get install -y \
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
     cmake \
-    php5
+    php5 \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN gem install pronto -v "< 0.9.3" && \
-    gem install pronto-phpcs && \
-    gem install pronto-phpmd
+RUN gem install pronto -v "< 0.9.3" --no-document && \
+    gem install pronto-phpcs --no-document && \
+    gem install pronto-phpmd --no-document
 
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
