@@ -1,6 +1,8 @@
 FROM ruby:2
 
 ENV PRONTO_ROOT /data
+ENV PRONTO_VERSION 0.9.5
+
 WORKDIR $PRONTO_ROOT
 
 RUN apt-get update -y \
@@ -9,7 +11,7 @@ RUN apt-get update -y \
     php5 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem install pronto -v "< 0.9.3" --no-document && \
+RUN gem install pronto -v $PRONTO_VERSION --no-document && \
     gem install pronto-phpcs --no-document && \
     gem install pronto-phpmd --no-document
 
